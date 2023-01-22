@@ -1,0 +1,14 @@
+--- # deploy.yaml
+- hosts: devlinux
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: install git
+      action: yum pkg=git state=present
+    - name: install java
+     action: yum pkg=java state=present
+    - name: deploy-tomcat
+      action: copy src=/mnt/project/game-of-life/gameoflife-web/target/gameoflife.war  dest=/mnt/server/apache-tomcat-9.0.71/webapps/
+
